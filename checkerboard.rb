@@ -10,10 +10,11 @@ elsif n == 1
 	exit
 end
 
-# create a large reusable string of XOs since we print essentially the same garbage each iteration
-garbage = 'XO' * (n/2-1) + 'X'
 X = 'X'
 O = 'O'
+
+# create a large reusable string of XOs since we print essentially the same garbage each iteration
+garbage = 'XO' * (n/2-1) + X
 
 # let's go!
 (1..n).each do |x|
