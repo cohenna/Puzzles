@@ -11,39 +11,34 @@ elsif n == 1
 end
 
 # create a large reusable string of XOs since we print essentially the same garbage each iteration
-bigstring = 'XO' * (n/2-1)
+garbage = 'XO' * (n/2-1) + 'X'
+X = 'X'
+O = 'O'
 
 # let's go!
 (1..n).each do |x|
 	# if x is even, start line with an O
 	if (x & 1) == 0
-		print 'O'
+		print O
 	end
 	
 	# print garbage
-	print bigstring	
+	print garbage	
 	
-	# if x is odd, add an X
+	# we have some cleanup to do since garbage is not yet long enough (TWSS)
 	if (x & 1) == 1
-		print 'X'
+		# x is odd
+		print O
 	end
-
-	# we have some cleanup to do since bigstring is not yet long enough (TWSS)
+	
 	if (n & 1) == 1
+		# n is odd
 		if (x & 1) == 1
-			# n is odd, X is odd
-			print 'OX'
+			# x is odd
+			print X
 		else
-			# n is odd, X is even
-			print 'XO'
-		end
-	else
-		if (x & 1) == 1
-			# n is even, X is odd
-			print 'O'
-		else
-			# n is even, X is even
-			print 'X'
+			# x is even
+			print O
 		end
 	end
 	
