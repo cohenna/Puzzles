@@ -15,34 +15,20 @@ O = 'O'
 
 # create a large reusable string of XOs since we print essentially the same garbage each iteration
 garbage = 'XO' * (n/2-1) + X
+if (n & 1) == 1
+	garbage += O
+	C = X
+else
+	C = O
+end
 
-# let's go!
 (1..n).each do |x|
-	# if x is even, start line with an O
+	# if x is even, start line with an O. Otherwise end with X or O dependent on whether n is odd
 	if (x & 1) == 0
 		print O
+		puts garbage
+	else
+		print garbage
+		puts C
 	end
-	
-	# print garbage
-	print garbage	
-	
-	# we have some cleanup to do since garbage is not yet long enough (TWSS)
-	if (x & 1) == 1
-		# x is odd
-		print O
-	end
-	
-	if (n & 1) == 1
-		# n is odd
-		if (x & 1) == 1
-			# x is odd
-			print X
-		else
-			# x is even
-			print O
-		end
-	end
-	
-	# print a new line (could check for last iteration and not print new line but punting)
-	puts
 end
