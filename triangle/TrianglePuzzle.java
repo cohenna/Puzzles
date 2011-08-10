@@ -1,4 +1,5 @@
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.StringTokenizer;
 import com.sif.reverse.ReverseFileLineReader;
 
@@ -44,43 +45,10 @@ public class TrianglePuzzle {
 		return sums[0];
 	}
 	
-	public int solveBinaryTreeProblem() throws IOException {
-		int c;
-		String line;
-		int count = 0;
-		int [] sums = null;
-		StringTokenizer st;
-		while((line = in.readLine()) != null) {
-			st = new StringTokenizer(line);
-			int numTokens = st.countTokens();
-			if(sums == null) {
-				// allocate first time
-				sums = new int[numTokens];
-				int j = 0;
-				while(st.hasMoreTokens()) {
-					sums[j] = Integer.parseInt(st.nextToken());
-					j++;
-				}
-				continue;
-			}
-			int j = 0;
-			while(st.hasMoreTokens()) {
-				int current = Integer.parseInt(st.nextToken());
-				// previous interation sums are at j*2 and j*2+1
-				int index = j << 1;
-				int index_plus_one = index+1;
-				if(sums[index] > sums[index_plus_one]) {
-					sums[j] = current + sums[index];
-				}
-				else {
-					sums[j] = current + sums[index_plus_one];
-				}
-			}
-		}
-		return sums[0];
-	}
-
 	public static void main(String[] args) throws Exception{
+		if(args.length != 1) {
+			return;
+		}
 		TrianglePuzzle p = new TrianglePuzzle(args[0]);
 		int solution = p.solve();
 		System.out.println(solution);
